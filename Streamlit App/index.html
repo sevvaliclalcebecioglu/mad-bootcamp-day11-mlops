@@ -1,0 +1,123 @@
+<!-- Sayfanın HTML5 standardında oluşturulduğunu belirtir -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Türkçe karakterlerin doğru görüntülenmesi için -->
+    <meta charset="utf-8">
+    <!-- Sayfanın mobil cihazlarda uyumlu görünmesi için -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Sekmede gözükecek başlık -->
+    <title>Maas Tahmin Eden Model</title>
+
+    <!-- Basit sayfa stili (CSS) -->
+    <style>
+        /* Genel sayfa ayarları */
+        body {
+            font-family: Arial, sans-serif;  /* Yazı tipi */
+            background-color: #f4f4f4;       /* Arka plan rengi */
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Başlık (h1) stili */
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Form kutusu ayarları */
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px; /* Köşeleri yuvarlatır */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Gölgelendirme efekti */
+            max-width: 400px; /* Maksimum genişlik */
+            margin: auto; /* Ortalar */
+        }
+
+        /* Tablo (form düzeni için kullanıldı) */
+        table {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        /* Hücre boşlukları */
+        td {
+            padding: 10px;
+        }
+
+        /* Metin kutuları için stil */
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Buton stili */
+        input[type="submit"] {
+            background-color: #5cb85c; /* Yeşil buton */
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        /* Buton üzerine gelindiğinde renk değişimi */
+        input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Sayfa başlığı -->
+<h1>Maas Tahmin Eden Model</h1>
+
+<!-- Form: Kullanıcıdan giriş alınır ve /predict endpoint'ine POST yöntemiyle gönderilir -->
+<form action="/predict" method="post">
+    <table>
+        <!-- İsim girişi -->
+        <tr>
+            <td>İsim</td>
+            <td><input type="text" name="isim" required></td>
+        </tr>    
+
+        <!-- Tecrübe (yıl olarak) -->
+        <tr>
+            <td>Tecrübe</td>
+            <td><input type="text" name="tecrube" required></td>
+        </tr>    
+
+        <!-- Yazılı sınav puanı -->
+        <tr>
+            <td>Yazılı</td>
+            <td><input type="text" name="yazili" required></td>
+        </tr>    
+
+        <!-- Mülakat puanı -->
+        <tr>
+            <td>Mülakat</td>
+            <td><input type="text" name="mulakat" required></td>
+        </tr>    
+
+        <!-- Tahmin butonu -->
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Tahmin Et"></td>
+        </tr>    
+    </table>
+</form>    
+
+<!-- Flask tarafından döndürülen tahmin sonucu burada gösterilir -->
+{% if tahmin %}
+    <h2>{{ tahmin }}</h2>
+{% endif %}
+
+</body>    
+</html>
